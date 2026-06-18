@@ -14,14 +14,23 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 
 @SpringBootTest
 @AutoConfigureMockMvc
-public class HelloControllerTest {
+class HelloControllerTest {
+
     @Autowired
     private MockMvc mockMvc;
 
     @Test
     void testHelloEndpoint() throws Exception {
         mockMvc.perform(get("/api/hello"))
-        .andExpect(status().isOk())
-        .andExpect(jsonPath("$.status").value("OK"));
+            .andExpect(status().isOk())
+            .andExpect(jsonPath("$.status").value("OK"));
+    }
+
+    @Test
+    void testHealthEndpoint() throws Exception {
+        mockMvc.perform(get("/api/health"))
+            .andExpect(status().isOk())
+            .andExpect(jsonPath("$.status").value("UP"));
     }
 }
+

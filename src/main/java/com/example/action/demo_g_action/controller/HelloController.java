@@ -13,7 +13,7 @@ public class HelloController {
     public Map<String, String> hello() {
         return Map.of(
             "message", "Hello from Github Actions!",
-            "statuc", "OK"
+            "status", "OK"
         );
     }
 
