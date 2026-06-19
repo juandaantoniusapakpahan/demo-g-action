@@ -52,5 +52,24 @@ class HelloControllerTest {
                 .andExpect(jsonPath("$.name").value("Huanda"))
                 .andExpect(jsonPath("$.email").value("huandaexample.com"));
     }
+
+    @Test
+    void testGetHelloOne() throws Exception {
+        mockMvc.perform(get("/api/hello/one/{id}", "1212"))
+                .andExpect(status().isOk())
+                .andExpect(jsonPath("$.id").value("1212"));
+    }
+
+    @Test
+    void testGetHelloQuery() throws Exception {
+        mockMvc.perform(get("/api/hello/query")
+                .contentType(MediaType.APPLICATION_JSON)
+                .param("name", "Huanda")
+                .param("email", "huandatest@gmail.com"))
+                .andExpect(status().isOk())
+                .andExpect(jsonPath("$.name").value("Huanda"))
+                .andExpect(jsonPath("$.email").value("huandatest@gmail.com"));
+
+    }
 }
 
